@@ -21,10 +21,10 @@ module.exports = (sequelize, DataTypes) => {
       //   { foreignKey: 'spotId' }
       // );
 
-      // Spot.hasMany(
-      //   models.SpotImage,
-      //   { foreignKey: 'spotId' }
-      // );
+      Spot.hasMany(
+        models.SpotImage,
+        { foreignKey: 'spotId' }
+      );
 
       // Spot.hasMany(
       //   models.Booking,
