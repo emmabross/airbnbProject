@@ -30,16 +30,7 @@ module.exports = {
         url: 'https://dazedprod.blob.core.windows.net/dazed-prod/1250/5/1255623.gif',
         preview: true
       },
-    ])
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-    */
+    ], {})
   },
 
   async down (queryInterface, Sequelize) {
