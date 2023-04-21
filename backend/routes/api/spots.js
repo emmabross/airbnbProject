@@ -2,7 +2,7 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const {Spot, User, SpotImage } = require('../../db/models');
+const { Spot, User, SpotImage } = require('../../db/models');
 
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
@@ -36,7 +36,7 @@ router.get("/", async (req, res) => {
         delete spot.SpotImages;
     })
 
-    res.json(spotsList)
+    return res.json(spotsList);
 })
 
 module.exports = router;
