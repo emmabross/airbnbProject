@@ -2,32 +2,56 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { Spot, User, SpotImage } = require('../../db/models');
 
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
+const { Spot, Review, ReviewImage, User, SpotImage, Booking } = require('../../db/models');
 
 const router = express.Router();
 
-// const validateSpot = [
-//     check('')
-//         .exists({ checkFalsy: true })
-//         .isEmail()
-//         .withMessage('Please provide a valid email.'),
-//     check('username')
-//         .exists({ checkFalsy: true })
-//         .isLength({ min: 4 })
-//         .withMessage('Please provide a username with at least 4 characters.'),
-//     check('username')
-//         .not()
-//         .isEmail()
-//         .withMessage('Username cannot be an email.'),
-//     check('password')
-//         .exists({ checkFalsy: true })
-//         .isLength({ min: 6 })
-//         .withMessage('Password must be 6 characters or more.'),
-//     handleValidationErrors
-// ];
+//Validate spots
+const validateSpot = [
+    check('address')
+        .exists({ checkFalsy: true })
+        .withMessage('Street address is required'),
+    check('city')
+        .exists({ checkFalsy: true })
+        .withMessage('City is required'),
+    check('state')
+        .exists({ checkFalsy: true })
+        .withMessage('State is required'),
+    check('country')
+        .exists({ checkFalsy: true })
+        .withMessage('Country is required'),
+    check('lat')
+        .exists({ checkFalsy: true })
+        .withMessage('Latitude is invalid'),
+    check('lng')
+        .exists({ checkFalsy: true })
+        .withMessage('Longitude is invalid'),
+    check('lat')
+        .exists({ checkFalsy: true })
+        .withMessage('Latitude is required'),
+    check('name')
+        .isLength({ max: 50 })
+        .withMessage('Name must be less than 50 characters'),
+    check('description')
+        .exists({ checkFalsy: true })
+        .withMessage('Description is required'),
+    check('price')
+        .exists({ checkFalsy: true })
+        .withMessage('Price per day is required'),
+    handleValidationErrors
+];
+
+const validateReview = [
+    check('review')
+        .exists({ checkFalsy: true })
+        .withMessage('Review text is required'),
+    check('stars')
+        .exists({ checkFalsy: true })
+        .withMessage('Stars must be an integer from 1 to 5')
+];
 
 //Edit a spot
 router.put("/:spotId", async (req, res) => {
