@@ -70,11 +70,17 @@ router.post("/:spotId/images", requireAuth, async (req, res) => {
 
     spot = spot.toJSON();
     if (spot.ownerId !== user) res.status(400).json({ "Error": "Must be owner to add image to spot"})
-    spot.id = user;
-    spot.url = url;
-    spot.preview = preview
 
-    res.status(200).json({ id: user, url: spot.url, preview: spot.preview });
+    const addImage = await SpotImage.create({
+        spotId: spot.id,
+        url,
+        preview
+    })
+    // spot.id = user;
+    // spot.url = url;
+    // spot.preview = preview
+
+    res.status(200).json({ id: addImage.spotId, url: addImage.url, preview: addImage.preview});
 })
 
 //Edit a spot
@@ -183,14 +189,7 @@ router.get("/:spotId", async (req, res) => {
    
     delete spot.Reviews;
     delete spot.User;
-
-    // spot.SpotImages.forEach(image => {
-    //     spot.SpotImages += image
-    // })
-    // if (!spot.previewImage) {
-    //     spot.previewImage = 'No spot image found'
-    // }
-    // delete spot.SpotImages;
+     if (!spot.SpotImages.length) spot.SpotImages = 'No images for this spot';
 
     return res.json(spot);
 })
