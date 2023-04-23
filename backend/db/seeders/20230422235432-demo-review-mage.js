@@ -28,7 +28,7 @@ module.exports = {
         reviewId: 4,
         url: 'https://i.pinimg.com/736x/49/a6/9f/49a69f9fff0e8515789bb172e3daff23.jpg'
       }
-    ], {})
+    ])
   },
 
   async down (queryInterface, Sequelize) {
