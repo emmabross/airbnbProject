@@ -6,7 +6,7 @@ const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { Spot, Review, ReviewImage, User, SpotImage, Booking } = require('../../db/models');
-const { DECIMAL } = require('sequelize');
+const { DECIMAL, STRING } = require('sequelize');
 
 const router = express.Router();
 
@@ -68,7 +68,7 @@ const validateReview = [
 
 
 //Create a spot
-router.post("/", requireAuth, validateSpot, async (req, res) => {
+router.post("/", validateSpot, requireAuth, async (req, res) => {
     const { address, city, state, country, lat, lng, name, description, price } = req.body;
     const spot = await Spot.create({ ownerId: req.user.id, address, city, state, country, lat, lng, name, description, price });
     await setTokenCookie(res, spot);
@@ -135,6 +135,7 @@ router.post("/:spotId/bookings", requireAuth, async (req, res) => {
     const { spotId } = req.params;
     let { startDate, endDate } = req.body;
     const userId = req.user.id;
+    
     let spot = await Spot.findByPk(spotId);
     if (!spot) return res.status(404).json({ "message": "Spot couldn't be found" })
     const bookings = await Booking.findAll({
@@ -155,12 +156,12 @@ router.post("/:spotId/bookings", requireAuth, async (req, res) => {
     });
 
 
-    // bookingsList.forEach(booking => {
-    //     //this handles start date/end date error
-    //     booking.startDate = booking.startDate.toJSON().slice(0, 10);
-    //     booking.endDate = booking.endDate.toJSON().slice(0, 10);
-    //     if (Date.parse(booking.endDate) <= Date.parse(booking.startDate)) return res.status(400).json({ "endDate": "endDate cannot be on or before startDate" })
-    // })
+    bookingsList.forEach(booking => {
+        //this handles start date/end date error
+        booking.startDate = booking.startDate.toJSON().slice(0, 10);
+        booking.endDate = booking.endDate.toJSON().slice(0, 10);
+        if (Date.parse(booking.endDate) <= Date.parse(booking.startDate)) return res.status(400).json({ "endDate": "endDate cannot be on or before startDate" })
+    })
 
 
     let startTime = Date.parse(startDate);
@@ -183,7 +184,7 @@ router.post("/:spotId/bookings", requireAuth, async (req, res) => {
         startDate,
         endDate
     })
-    res.status(200).json(createBooking)
+    return res.status(200).json(createBooking)
     // res.status(200).json({ id: createBooking.id, spotId, userId, startDate, endDate })
 });
 
@@ -205,7 +206,7 @@ router.put("/:spotId", requireAuth, validateSpot, async (req, res) => {
         spot.lng = lng,
         spot.name = name,
         spot.description = description,
-        spot.price = price
+        spot.price = price,
         spot.updatedAt = new Date();
     res.status(200).json(spot);
 })
@@ -279,7 +280,7 @@ router.post("/:spotId/reviews", requireAuth, validateReview, async (req, res) =>
         review,
         stars
     })
-    res.status(200).json(createReview)
+    res.status(201).json(createReview)
 })
 
 //Get all Review's by a Spot's id

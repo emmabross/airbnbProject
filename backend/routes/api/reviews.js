@@ -55,7 +55,7 @@ router.post("/:reviewId/images", requireAuth, async (req, res) => {
         const review = await Review.findByPk(req.params.reviewId);
 
         if (!review) {
-            return res.status(404).json({ message: "Spot couldn't be found" });
+            return res.status(404).json({ message: "Review couldn't be found" });
         }
 
         if (user.id !== review.userId) {
@@ -71,7 +71,7 @@ router.post("/:reviewId/images", requireAuth, async (req, res) => {
         });
 
         if (images.length >= 10) {
-            return res.status(400).json({ message: "Maximum number of images for this resource was reached" });
+            return res.status(403).json({ message: "Maximum number of images for this resource was reached" });
         }
 
         const addImage = await ReviewImage.create({
