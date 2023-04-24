@@ -28,17 +28,17 @@ router.use('/spots', spotsRouter);
 
 router.use('/reviews', reviewsRouter);
 
-router.use('/review-images', reviewImagesRouter);
-
 router.use('/bookings', bookingsRouter);
 
 router.use('/spot-images', spotImagesRouter);
+
+router.use('/review-images', reviewImagesRouter);
 
 router.post('/test', function (req, res) {
     res.json({ requestBody: req.body });
 });
 
-//This will test the setTokenCookie function by getting the demo user and calling setTokenCookie.
+// This will test the setTokenCookie function by getting the demo user and calling setTokenCookie.
 // const { setTokenCookie } = require('../../utils/auth.js');
 // const { User } = require('../../db/models');
 // router.get('/set-token-cookie', async (_req, res) => {

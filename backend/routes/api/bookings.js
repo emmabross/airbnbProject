@@ -25,15 +25,15 @@ router.put("/:bookingId", requireAuth, validateBooking, async (req, res) => {
     const user = req.user.id;
     const { bookingId } = req.params;
     let { startDate, endDate } = req.body;
-    let currentTime = Date.now();
-    startDateTime = new Date(startDate);
-    endDateTime = new Date(endDate)
+    let now = new Date();
+    let startDateTime = new Date(startDate);
+    let endDateTime = new Date(endDate)
 
     // startDate = startDate.toString();
     // endDate = endDate.toString();
 
     //booking not found error - 
-    let booking = await Booking.findByPk(req.params.bookingId);
+    let booking = await Booking.findByPk(bookingId);
     let bookings = await Booking.findAll({
         where: {
             userId: user
@@ -47,8 +47,10 @@ router.put("/:bookingId", requireAuth, validateBooking, async (req, res) => {
 
 
     //cant edit booking in past
-    if (booking.startDateTime < currentTime) res.status(403).json({ "message": "Past bookings can't be modified" })
-
+    // if (booking.startDateTime < now) res.status(403).json({ "message": "Past bookings can't be modified" })
+    if (booking.startDate < now ) return res.status(403).json({
+        "message": "Past bookings can't be modified"
+    })
 
     if (endDateTime <= startDateTime) return res.status(400).json({ "endDate": "endDate cannot be on or before startDate" })
 
@@ -74,7 +76,7 @@ router.put("/:bookingId", requireAuth, validateBooking, async (req, res) => {
         // if (Date.parse(booking.endDate) <= Date.parse(booking.startDate)) return res.status(400).json({ "endDate": "endDate cannot be on or before startDate" })
         if (startDate >= endDate) return res.status(400).json({ "endDate": "endDate cannot be on or before startDate" })
 
-        if ((booking.startDate === (startDate || endDate)) || (booking.endDate == (endDate || startDate))) return res.status(403).json({
+        if ((booking.startDate === (startDate || endDate)) || (booking.endDate == (endDate || startDate))) return res.status(400).json({
             "message": "Sorry, this spot is already booked for the specified dates",
                 "errors": {
                 "startDate": "Start date conflicts with an existing booking"}
@@ -92,7 +94,7 @@ router.put("/:bookingId", requireAuth, validateBooking, async (req, res) => {
     // });
 
 
-    res.status(200).json({ id: booking.id, });
+    res.status(200).json(booking );
 })
 
 

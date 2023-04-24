@@ -24,6 +24,15 @@ const validateSignup = [
         .not()
         .isEmail()
         .withMessage('Username cannot be an email.'),
+    check('username')
+        .exists({ checkFalsy: true })
+        .withMessage( 'Username is required.'),
+    check('firstName')
+        .exists({ checkFalsy: true })
+        .withMessage('First name is required'),
+    check('lastName')
+        .exists({ checkFalsy: true})
+        .withMessage('Last name is required'),
     check('password')
         .exists({ checkFalsy: true })
         .isLength({ min: 6 })
@@ -39,7 +48,10 @@ router.post(
         const { email, firstName, lastName, password, username } = req.body;
         const hashedPassword = bcrypt.hashSync(password);
         const user = await User.create({ email, firstName, lastName, username, hashedPassword });
-
+        if (!password.length) return res.status(400).json({ "message": "Bad Request", "errors": {
+                "password": "Password is required"
+            }
+        })
         const safeUser = {
             id: user.id,
             firstName: user.firstName,
@@ -47,6 +59,7 @@ router.post(
             email: user.email,
             username: user.username,
         };
+
 
         await setTokenCookie(res, safeUser);
 
