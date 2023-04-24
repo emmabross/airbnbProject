@@ -16,10 +16,7 @@ router.delete("/:imageId", requireAuth, async (req, res) => {
     let image = await SpotImage.findByPk(req.params.imageId, {
         include: [
             {
-                model: Spot, 
-                where: {
-                    spotId: 
-                }
+                model: Spot
             }
         ]
     })
