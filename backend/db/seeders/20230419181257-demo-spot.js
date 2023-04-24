@@ -66,7 +66,7 @@ module.exports = {
         lat: 37.7656651,
         lng: -142.4730327,
         name: 'Hot Girl Summer Villa',
-        description: 'I love Goose I love Goose I love Goose I love Goose I love Goose',
+        description: 'I love Goose Goose I love Goose',
         price: 13.02
       }
     ], {});
