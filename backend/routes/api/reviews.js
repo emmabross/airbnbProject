@@ -28,7 +28,7 @@ router.delete("/:reviewId", requireAuth, async (req, res) => {
     if (review.userId === user) {
         await review.destroy();
         res.status(200).json({ "message": "Successfully deleted" })
-    } else { res.status(403).json({ "message": "Unauthorized" }) }
+    } else { res.status(403).json({ "message": "Forbidden" }) }
 })
 
 //Edit a review
@@ -39,7 +39,7 @@ router.put("/:reviewId", requireAuth, validateReview, async (req, res) => {
     if (!findReview) res.status(404).json({ "message": "Review couldn't be found" })
 
     findReview = findReview.toJSON();
-    if (findReview.userId !== user) res.status(403).json({ "message": "Unauthorized user" });
+    if (findReview.userId !== user) res.status(403).json({ "message": "Forbidden" });
 
     findReview.review = review,
     findReview.stars = stars,
@@ -56,7 +56,7 @@ router.post("/:reviewId/images", requireAuth, async (req, res) => {
     if (!review) return res.status(404).json({ "message": "Review couldn't be found" })
 
     review = review.toJSON();
-    if (review.userId !== user) res.status(400).json({ "Error": "Must be owner to add image to spot" })
+    if (review.userId !== user) res.status(403).json({ "message": "Forbidden" })
 
     const addImage = await ReviewImage.create({
         id: review.reviewId,

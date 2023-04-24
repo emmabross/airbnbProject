@@ -42,7 +42,7 @@ router.put("/:bookingId", requireAuth, validateBooking, async (req, res) => {
     if (!booking) res.status(404).json({ "message": "Booking couldn't be found" })
 
     //invalid user error
-    if (booking.userId !== user) res.status(403).json({ "message": "Invalid user" });
+    if (booking.userId !== user) res.status(403).json({ "message": "Forbidden" });
     booking = booking.toJSON();
 
 
@@ -156,7 +156,7 @@ router.delete("/:bookingId", requireAuth, async (req, res) => {
         res.status(200).json({ "message": "Successfully deleted" })
     }
     
-    if (booking.userId !== user) return res.status(403).json({ "message": "Unauthorized" });
+    if (booking.userId !== user) return res.status(403).json({ "message": "Forbidden" });
 
 })
 
