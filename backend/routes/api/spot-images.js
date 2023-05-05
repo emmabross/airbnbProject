@@ -10,22 +10,25 @@ const { Spot, Review, ReviewImage, User, Booking, SpotImage } = require('../../d
 const router = express.Router();
 
 router.delete("/:imageId", requireAuth, async (req, res) => {
-    const userId = req.user.id;
-    const { imageId } = req.params;
+    const { user } = req;
+    const spotImage = await SpotImage.findByPk(req.params.imageId, { include: [{ model: Spot }] });
 
-    let image = await SpotImage.findByPk(req.params.imageId, {
-        include: [
-            {
-                model: Spot
-            }
-        ]
-    })
-    image = image.toJSON();
-    if (!image.SpotImage.imageId) return res.status(404).json({ "message": "Spot Image couldn't be found" })
-    if (image.userId !== userId) return res.status(403).json({ "message": "Forbidden" });
+    if (!spotImage) {
+        return res.status(404).json({
+            message: "Spot Image couldn't be found",
+        });
+    }
 
-    await image.destroy();
-    return res.status(200).json({ "message": "Successfully deleted" })
-})
+    if (spotImage.Spot.ownerId !== user.id) {
+        return res.status(403).json({
+            message: "Forbidden",
+        });
+    }
+
+    await spotImage.destroy();
+    return res.json({
+        message: "Successfully deleted"
+    });
+});
 
 module.exports = router;

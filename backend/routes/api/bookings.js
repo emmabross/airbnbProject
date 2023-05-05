@@ -48,9 +48,10 @@ router.put("/:bookingId", requireAuth, validateBooking, async (req, res) => {
 
     //cant edit booking in past
     // if (booking.startDateTime < now) res.status(403).json({ "message": "Past bookings can't be modified" })
-    if (booking.startDate.getFullYear() < now.getFullYear()) return res.status(403).json({
+    if (startDateTime.getTime() < now.getTime()) return res.status(403).json({
         "message": "Past bookings can't be modified"
     })
+
 
     if (endDateTime <= startDateTime) return res.status(400).json({ "endDate": "endDate cannot be on or before startDate" })
 
@@ -132,35 +133,19 @@ router.get("/current", requireAuth, async (req, res) => {
     return res.status(200).json({ Bookings: bookingsList })
 })
 
-//Delete a booking
-router.delete("/:bookingId", requireAuth, async (req, res) => {
-    const user = req.user.id;
-    const booking = await Booking.findByPk(req.params.bookingId, {
-        include: [
-            {
-                model: Spot
-            }
-        ]
-    })
-    const now = new Date();
+// Delete a booking
+router.delete('/:bookingId', requireAuth, async (req, res) => {
+    const { user } = req;
+    const booking = await Booking.findByPk(req.params.bookingId)
+    if (!booking) return res.status(404).json({ message: "Booking couldn't be found" })
 
-    //this error is working
-    if (!booking) return res.status(404).json({ "message": "Booking couldn't be found" })
+    if (booking.startDate <= Date.now() && booking.endDate >= Date.now())
+        return res.status(403).json({ message: "Bookings that have started can't be deleted" })
 
-    //bookings that have been started cant be deleted - works
-    if (booking.startDate > now) return res.status(403).json({
-        "message": "Bookings that have been started can't be deleted"
-    })
+    if (booking.userId !== user.id) return res.status(403).json({ message: "Forbidden" })
 
-    
-    if (booking.userId === user) {
-        await booking.destroy();
-        res.status(200).json({ "message": "Successfully deleted" })
-    }
-    
-    if (booking.userId !== user) return res.status(403).json({ "message": "Forbidden" });
-
+    await booking.destroy();
+    return res.status(200).json({ message: "Successfully deleted" });
 })
-
 
 module.exports = router;
