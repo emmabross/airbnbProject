@@ -10,15 +10,7 @@ if (process.env.NODE_ENV === 'production') {
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-    */
+   
     options.tableName = 'Spots';
     return queryInterface.bulkInsert(options, [
       {
@@ -68,6 +60,54 @@ module.exports = {
         name: 'Hot Girl Summer Villa',
         description: 'I love Goose Goose I love Goose',
         price: 13.02
+      },
+      {
+        ownerId: 3,
+        address: '1234 Ocean Ave',
+        city: 'San Francisco',
+        state: 'California',
+        country: 'United States of America',
+        lat: 37.7304201,
+        lng: -122.4767739,
+        name: 'Beachside Bungalow',
+        description: 'Relax and unwind in this cozy beachside bungalow, just steps from the sand.',
+        price: 143.99
+      },
+      {
+        ownerId: 4,
+        address: '5678 Market St',
+        city: 'San Francisco',
+        state: 'California',
+        country: 'United States of America',
+        lat: 37.7750129,
+        lng: -122.4336522,
+        name: 'Urban Oasis',
+        description: 'Escape the hustle and bustle of the city in this tranquil urban oasis, complete with a private garden.',
+        price: 139.99
+      },
+      {
+        ownerId: 1,
+        address: '9012 Valencia St',
+        city: 'San Francisco',
+        state: 'California',
+        country: 'United States of America',
+        lat: 37.7501141,
+        lng: -122.4200639,
+        name: 'Spanish Villa',
+        description: 'Experience the charm of old-world Spain in this stunning villa, complete with a courtyard and rooftop terrace.',
+        price: 129.99
+      },
+      {
+        ownerId: 5,
+        address: '7890 Haight St',
+        city: 'San Francisco',
+        state: 'California',
+        country: 'United States of America',
+        lat: 37.7682355,
+        lng: -122.4538625,
+        name: 'Hipster Haven',
+        description: 'Stay in the heart of the citys trendiest neighborhood in this chic and stylish loft.',
+        price: 152.99
       }
     ], {});
   },
@@ -76,7 +116,7 @@ module.exports = {
     options.tableName = 'Spots';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      name: { [Op.in]: ['Beach House', 'Cabin in the Woods', 'Stinky Linktropolis', 'Hot Girl Summer Villa'] }
+      name: { [Op.in]: ['Beach House', 'Cabin in the Woods', 'Stinky Linktropolis', 'Hot Girl Summer Villa', 'Beachside Bungalow', 'Urban Oasis', 'Spanish Villa', 'Hipster Haven'] }
     }, {});
   }
 };
