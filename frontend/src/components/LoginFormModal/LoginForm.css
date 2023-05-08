@@ -1,0 +1,9 @@
+#modal-content {
+    border-radius: 16px;
+    padding: 20px;
+    width: 30em;
+}
+
+input {
+    border: 3px solid black;
+}
