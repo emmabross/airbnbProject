@@ -108,6 +108,30 @@ module.exports = {
         name: 'Hipster Haven',
         description: 'Stay in the heart of the citys trendiest neighborhood in this chic and stylish loft.',
         price: 152.99
+      },
+      {
+        ownerId: 5,
+        address: '3456 Lombard St',
+        city: 'San Francisco',
+        state: 'California',
+        country: 'United States of America',
+        lat: 37.8002723,
+        lng: -122.4327781,
+        name: 'Golden Gate View',
+        description: 'Enjoy breathtaking views of the Golden Gate Bridge from this stylish and modern apartment.',
+        price: 117.99
+      },
+      {
+        ownerId: 6,
+        address: '4321 Forest Ln',
+        city: 'San Francisco',
+        state: 'California',
+        country: 'United States of America',
+        lat: 37.7585185,
+        lng: -122.4390883,
+        name: 'Tree house Retreat',
+        description: 'Escape to the treetops in this rustic yet luxurious treehouse, nestled in a secluded forest.',
+        price: 116.99
       }
     ], {});
   },
@@ -116,7 +140,7 @@ module.exports = {
     options.tableName = 'Spots';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      name: { [Op.in]: ['Beach House', 'Cabin in the Woods', 'Stinky Linktropolis', 'Hot Girl Summer Villa', 'Beachside Bungalow', 'Urban Oasis', 'Spanish Villa', 'Hipster Haven'] }
+      name: { [Op.in]: ['Beach House', 'Cabin in the Woods', 'Stinky Linktropolis', 'Hot Girl Summer Villa', 'Beachside Bungalow', 'Urban Oasis', 'Spanish Villa', 'Hipster Haven', 'Golden Gate View', 'Tree house Retreat'] }
     }, {});
   }
 };
