@@ -14,7 +14,7 @@ module.exports = {
     return queryInterface.bulkInsert(options, [
       {
         reviewId: 1,
-        url: 'https://parade.com/.image/t_share/MTkwNTc4MzQwNzk2NTA4MDI4/image-placeholder-title.gif'
+        url: 'https://cdn.discordapp.com/attachments/1105529560587583628/1105531294206673018/58B8F96E-481B-45C4-9992-AD801C0D001A_1_105_c.jpeg'
       },
       {
         reviewId: 2,
