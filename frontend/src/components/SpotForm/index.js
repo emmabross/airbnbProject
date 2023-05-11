@@ -54,12 +54,12 @@ const SpotForm = ({ spot, formType }) => {
                     required
                 />
             </label>
-            <div className="errors">{errors.improvement}</div>
+            <div className="errors">{errors.address}</div>
             <label>
                 Street Address:
                 <textarea
-                    value={improvement}
-                    onChange={(e) => setImprovement(e.target.value)}
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
                 />
             </label>
             <button type="submit">{formType}</button>

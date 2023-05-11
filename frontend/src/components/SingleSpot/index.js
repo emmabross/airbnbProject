@@ -19,7 +19,9 @@ const SingleSpot = () => {
 
     console.log('spotttt', spot)
     // console.log('SPOT IMAGES', spot.SpotImages[1])
-
+    const showAlert = () => {
+        alert("Feature coming soon");
+    }
 
     useEffect(() => {
         dispatch(fetchSpotThunk(spotId));
@@ -60,6 +62,9 @@ const SingleSpot = () => {
                     </div>
                     <div className="spot-reviews">
                         {spot?.numReviews} reviews
+                    </div>
+                    <div className="reserve-button">
+                        <button type="button" onClick={showAlert}>Reserve</button>
                     </div>
                 </div>
             </div>
