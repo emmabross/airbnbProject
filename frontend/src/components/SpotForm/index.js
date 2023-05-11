@@ -5,7 +5,7 @@ import * as sessionActions from '../../store/session';
 import { useDispatch } from "react-redux";
 import { updateSpotThunk, createSpotThunk } from "../../store/spots";
 
-const SpotForm = ({ spot, formType, user }) => {
+const SpotForm = ({ spot, formType, formTitle }) => {
     const history = useHistory();
     const [country, setCountry] = useState(spot?.country);
     const [address, setAddress] = useState(spot?.address);
@@ -29,7 +29,7 @@ const SpotForm = ({ spot, formType, user }) => {
         if (formType === "Update Spot") {
             const updatedSpot = await dispatch(updateSpotThunk(spot));
             spot = updatedSpot;
-        } else if (formType === "Create a New Spot") {
+        } else if (formType === "Create Spot") {
             const newSpot = await dispatch(createSpotThunk(spot));
             spot = newSpot;
         }
@@ -45,7 +45,7 @@ const SpotForm = ({ spot, formType, user }) => {
 
     return (
         <form className="spot-form" onSubmit={handleSubmit}>
-            <h2>{formType}</h2>
+            <h2>{formTitle}</h2>
             <div className="spot-form-heading">
                 <h3>Where's your place located?</h3>
                 <p>Guests will only get your exact address once they booked a
@@ -98,12 +98,11 @@ const SpotForm = ({ spot, formType, user }) => {
             </div>
             <div className="spot-description-container">
                 <h3>Describe your place to guests</h3>
-                <p>Mention the best features of your space, any special amentities like
-                    fast wif or parking, and what you love about the neighborhood.</p>
+                <p>Mention the best features of your space, any special amentities like fast wifi or parking, and what you love about the neighborhood.</p>
                 <label>
                     <input
                         type="text"
-                        placeholder="Description"
+                        placeholder="Please write at least 30 characters"
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                         required
@@ -133,7 +132,7 @@ const SpotForm = ({ spot, formType, user }) => {
                         in search results.</p>
                     <input
                         placeholder="Price per night (USD)"
-                        type="text"
+                        type="number"
                         value={price}
                         onChange={(e) => setPrice(e.target.value)}
                         required
@@ -146,27 +145,26 @@ const SpotForm = ({ spot, formType, user }) => {
                 <label>
                     <p>Submit a link to at least one photo to publish your spot.</p>
                     <input
-                        placeholder="Preview Image Url"
+                        placeholder="Preview Image URL"
                         type="text"
                         value={previewImage}
                         onChange={(e) => setPreviewImage(e.target.value)}
                         required
                     />
                     <input
-                        placeholder="Image Url"
-                        type="text"
-                        value={image}
-                        onChange={(e) => setImage(e.target.value)}
-                        required
-                    />
-                    <input
-                        placeholder="Image Url"
+                        placeholder="Image URL"
                         type="text"
                         value={image}
                         onChange={(e) => setImage(e.target.value)}
                     />
                     <input
-                        placeholder="Image Url"
+                        placeholder="Image URL"
+                        type="text"
+                        value={image}
+                        onChange={(e) => setImage(e.target.value)}
+                    />
+                    <input
+                        placeholder="Image URL"
                         type="text"
                         value={image}
                         onChange={(e) => setImage(e.target.value)}

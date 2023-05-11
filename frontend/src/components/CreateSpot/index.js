@@ -14,7 +14,7 @@ const CreateSpot = () => {
         previewImage: "",
         image: ""
     };
-    return  <SpotForm spot={spot} formType="Create a New Spot" />;
+    return  <SpotForm spot={spot} formType="Create Spot" formTitle="Create a New Spot" />;
 };
 
 export default CreateSpot;

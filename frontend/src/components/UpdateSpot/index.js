@@ -13,7 +13,7 @@ const UpdateSpot = () => {
         image: ""
     };
 
-    return <SpotForm spot={spot} formType="Update Spot" />;
+    return <SpotForm spot={spot} formType="Update Spot" formTitle="Update Spot" />;
 };
 
 export default UpdateSpot;
