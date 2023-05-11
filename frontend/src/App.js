@@ -6,7 +6,7 @@ import Navigation from "./components/Navigation";
 import GetAllSpots from "./components/GetAllSpots";
 import SingleSpot from "./components/SingleSpot";
 import CreateSpot from "./components/CreateSpot";
-import SpotForm from "./components/SpotForm";
+import UpdateSpot from "./components/UpdateSpot";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,7 +20,8 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && 
       <Switch>
-          <Route exact path="/spots/new" component={SpotForm} />
+          <Route exact path="/spots/:spotId/edit" component={UpdateSpot} />
+          <Route exact path="/spots/new" component={CreateSpot} />
           <Route exact path="/spots/:spotId" component={SingleSpot} />
           <Route exact path="/" component={GetAllSpots} />
           {/* <Route path="/spots/:spotId/edit" component={EditSpot} /> */}

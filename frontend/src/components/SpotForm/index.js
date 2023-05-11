@@ -19,7 +19,8 @@ const SpotForm = ({ spot, formType, user }) => {
     const [errors, setErrors] = useState({});
 
     const dispatch = useDispatch();
-    
+    console.log('SPOTTTTTTT', spot)
+    console.log("FORM TYPE", formType)
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrors({});
@@ -28,7 +29,7 @@ const SpotForm = ({ spot, formType, user }) => {
         if (formType === "Update Spot") {
             const updatedSpot = await dispatch(updateSpotThunk(spot));
             spot = updatedSpot;
-        } else if (formType === "Create Spot") {
+        } else if (formType === "Create a New Spot") {
             const newSpot = await dispatch(createSpotThunk(spot));
             spot = newSpot;
         }
@@ -45,6 +46,11 @@ const SpotForm = ({ spot, formType, user }) => {
     return (
         <form className="spot-form" onSubmit={handleSubmit}>
             <h2>{formType}</h2>
+            <div className="spot-form-heading">
+                <h3>Where's your place located?</h3>
+                <p>Guests will only get your exact address once they booked a
+                    reservation.</p>
+            </div>
             <div className="spot-location-container">
                 <label>
                     Country:
@@ -59,7 +65,7 @@ const SpotForm = ({ spot, formType, user }) => {
                 <p className="errors">{errors.country}</p>
                 <label>
                     Street Address:
-                    <textarea
+                    <input
                         placeholder="Address"
                         value={address}
                         onChange={(e) => setAddress(e.target.value)}
@@ -69,7 +75,7 @@ const SpotForm = ({ spot, formType, user }) => {
                 <p className="errors">{errors.address}</p>
                 <label>
                     City:
-                    <textarea
+                    <input
                         placeholder="City"
                         type="text"
                         value={city}
@@ -80,8 +86,7 @@ const SpotForm = ({ spot, formType, user }) => {
                 <p className="errors">{errors.city}</p>
                 <label>
                     State:
-                    <p className="errors">{errors.state}</p>
-                    <textarea
+                    <input
                         placeholder="STATE"
                         type="text"
                         value={state}
@@ -89,13 +94,14 @@ const SpotForm = ({ spot, formType, user }) => {
                         required
                     />
                 </label>
+                <p className="errors">{errors.state}</p>
             </div>
             <div className="spot-description-container">
                 <h3>Describe your place to guests</h3>
                 <p>Mention the best features of your space, any special amentities like
                     fast wif or parking, and what you love about the neighborhood.</p>
                 <label>
-                    <textarea
+                    <input
                         type="text"
                         placeholder="Description"
                         value={description}
@@ -110,7 +116,7 @@ const SpotForm = ({ spot, formType, user }) => {
                 <label>
                     <p>Catch guests' attention with a spot title that highlights what makes
                         your place special.</p>
-                    <textarea
+                    <input
                         type="text"
                         placeholder="Name of your spot"
                         value={name}
@@ -125,7 +131,7 @@ const SpotForm = ({ spot, formType, user }) => {
                 <label>
                     <p>Competitive pricing can help your listing stand out and rank higher
                         in search results.</p>
-                    <textarea
+                    <input
                         placeholder="Price per night (USD)"
                         type="text"
                         value={price}
@@ -135,37 +141,37 @@ const SpotForm = ({ spot, formType, user }) => {
                 </label>
                 <p className="errors">{errors.price}</p>
             </div>
-            <div className="spot-images-container">
+            <div className="spot-img-container">
                 <h3>Liven up your spot with photos</h3>
                 <label>
                     <p>Submit a link to at least one photo to publish your spot.</p>
-                    <textarea
+                    <input
                         placeholder="Preview Image Url"
                         type="text"
                         value={previewImage}
                         onChange={(e) => setPreviewImage(e.target.value)}
                         required
                     />
-                    <textarea
+                    <input
                         placeholder="Image Url"
                         type="text"
                         value={image}
                         onChange={(e) => setImage(e.target.value)}
                         required
                     />
-                    <textarea
+                    <input
                         placeholder="Image Url"
                         type="text"
                         value={image}
                         onChange={(e) => setImage(e.target.value)}
                     />
-                    <textarea
+                    <input
                         placeholder="Image Url"
                         type="text"
                         value={image}
                         onChange={(e) => setImage(e.target.value)}
                     />
-                    <textarea
+                    <input
                         placeholder="Image Url"
                         type="text"
                         value={image}
@@ -174,7 +180,7 @@ const SpotForm = ({ spot, formType, user }) => {
                 </label>
                 <p className="errors">{errors.image}{errors.previewImage}</p>
             </div>
-            <button type="submit">Create Spot</button>
+            <button type="submit">{formType}</button>
         </form>
     );
 };

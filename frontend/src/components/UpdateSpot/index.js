@@ -1,6 +1,6 @@
-import SpotForm from "./SpotForm";
+import SpotForm from "../SpotForm";
 
-const UpdateSpotForm = () => {
+const UpdateSpot = () => {
     const spot = {
         country: "",
         address: "",
@@ -13,8 +13,7 @@ const UpdateSpotForm = () => {
         image: ""
     };
 
-    /* **DO NOT CHANGE THE RETURN VALUE** */
     return <SpotForm spot={spot} formType="Update Spot" />;
 };
 
-export default UpdateSpotForm;
+export default UpdateSpot;
