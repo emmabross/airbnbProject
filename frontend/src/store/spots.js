@@ -124,7 +124,7 @@ function spotsReducer(state = initialState, action) {
             return newState
         }
         case CREATE_SPOT: {
-            const newState = { ...state, allSpots: {} }
+            const newState = { ...state }
             newState[action.spot.id] = action.spot
             return newState
         }

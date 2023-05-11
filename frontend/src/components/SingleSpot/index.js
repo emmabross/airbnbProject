@@ -58,7 +58,7 @@ const SingleSpot = () => {
                 <div className="spot-reserve-container">
                     <p className="spot-price">{spot?.price} night</p>
                     <div className="spot-rating">
-                        {spot?.avgStarRating}.0
+                        {spot?.avgStarRating >= 5 ? `${spot.avgStarRating}.0` : 'New'}
                     </div>
                     <div className="spot-reviews">
                         {spot?.numReviews} reviews

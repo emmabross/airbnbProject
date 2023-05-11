@@ -25,7 +25,7 @@ const SpotForm = ({ spot, formType, formTitle }) => {
         e.preventDefault();
         setErrors({});
         spot = { ...spot, country, address, city, state, description, name, price, previewImage, image };
-
+        console.log('ERRORSSS', setErrors);
         if (formType === "Update Spot") {
             const updatedSpot = await dispatch(updateSpotThunk(spot));
             spot = updatedSpot;
@@ -35,7 +35,7 @@ const SpotForm = ({ spot, formType, formTitle }) => {
         }
 
         if (spot.errors) {
-            setErrors(spot.errors);
+            return setErrors(spot.errors);
         } else {
             //redirects to new spot page
             history.push(`/spots/${spot.id}`);
@@ -178,7 +178,7 @@ const SpotForm = ({ spot, formType, formTitle }) => {
                 </label>
                 <p className="errors">{errors.image}{errors.previewImage}</p>
             </div>
-            <button type="submit">{formType}</button>
+            <button type="submit" onSubmit={handleSubmit}>{formType}</button>
         </form>
     );
 };

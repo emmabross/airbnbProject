@@ -17,3 +17,12 @@
     display: grid;
     max-width: 15em;
 }
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+}
+
+.spot-button {
+    background: none;
+    border: none;
+}

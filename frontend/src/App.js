@@ -24,7 +24,6 @@ function App() {
           <Route exact path="/spots/new" component={CreateSpot} />
           <Route exact path="/spots/:spotId" component={SingleSpot} />
           <Route exact path="/" component={GetAllSpots} />
-          {/* <Route path="/spots/:spotId/edit" component={EditSpot} /> */}
       </Switch>}
      
     </>
