@@ -46,6 +46,7 @@ export const fetchSpotThunk = (spotId) => async (dispatch) => {
 
     if (res.ok) {
         const spot = await res.json();
+        console.log('thisis one spot', spot)
         dispatch(fetchSpot(spot));
     } else {
         const errors = await res.json();
@@ -102,27 +103,34 @@ export const removeSpotThunk = (spotId) => async (dispatch) => {
 
 
 const initialState = {allSpots: {}, singleSpot: {}}
-/** The reports reducer is complete and does not need to be modified */
+
 function spotsReducer(state = initialState, action) {
     switch (action.type) {
         case FETCH_SPOTS: {
             const newState = { ...state, allSpots: {}, singleSpot: {} };
-            action.spots.forEach(spot => newState[spot.id] = spot)
+            console.log('ACTIONNNNNN', action)
+            action.spots.forEach(spot => newState.allSpots[spot.id] = spot)
             console.log('action SPOTS', action.spots)
             return newState
         }
         case REMOVE_SPOT: {
-            const newState = { ...state, allSpots: {...state.allSpots}, oneSpot: {}}
+            const newState = { ...state, allSpots: {...state.allSpots}, singleSpot: {}}
             delete newState.allSpots[action.spotId]
             return newState
         }
         case FETCH_SPOT: {
-            const newState = { ...state }
-            return newState[action.spotId]
+            const newState = { ...state, allSpots: {}, singleSpot: {} }
+            newState.singleSpot[action.spot.id] = action.spot
+            return newState
         }
         case CREATE_SPOT: {
             const newState = { ...state }
-            newState[action.report.id] = action.report
+            newState[action.spot.id] = action.spot
+            return newState
+        }
+        case UPDATE_SPOT: {
+            const newState = { ...state }
+            newState[action.spot.id] = action.spot
             return newState
         }
         default:
