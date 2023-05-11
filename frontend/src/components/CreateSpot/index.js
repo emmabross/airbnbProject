@@ -1,6 +1,7 @@
 // import { SpotForm } from "./SpotForm";
 
 // const CreateSpot = () => {
+//     console.log('inside create spot component')
 //     const spot = {
 //         country: "",
 //         address: "",
@@ -12,7 +13,6 @@
 //         previewImage: "",
 //         image: ""
 //     };
-
 //     return (
 //         <SpotForm spot={spot} formType={"Create Spot"}/> 
 //     );
