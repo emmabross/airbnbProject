@@ -1,23 +1,20 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchSpotsThunk } from "../../store/spots";
-import { useHistory } from "react-router-dom";
+import { fetchSpotThunk, fetchSpotsThunk } from "../../store/spots";
+import { Link } from "react-router-dom";
 
 import "./GetAllSpots.css";
 
 const GetAllSpots = () => {
     const dispatch = useDispatch();
-//figure out how to use history here or something
+
 
     const spotsObj = useSelector(state => state.spots.allSpots)
     const spots = Object.values(spotsObj); //populates store
     useEffect(() => {
         dispatch(fetchSpotsThunk())
     }, [dispatch])
-    const history = useHistory()
-    const handleClick = () => {
-        history.push(`/spots/${spots.spotId}`)
-    }
+
     console.log("spots", spots);
     return (
         <div className="landing-page-container">
@@ -27,7 +24,7 @@ const GetAllSpots = () => {
                         spots.map(spot => (
                             <>
                                 <div className="spot-card">
-                                    <button className="spot-button" onClick={handleClick}>
+                                    <Link to={`/spots/${spot.id}`}>
                                     <div className="tooltip">
                                         <span className="tooltiptext">{spot.name}</span>
                                     </div>
@@ -39,7 +36,7 @@ const GetAllSpots = () => {
                                             {spot?.avgRating >= 5 ? `${spot.avgRating}.0` : 'New'}
                                         </div>
                                     </div>
-                                    </button>
+                                    </Link>
                                 </div>
                             </>
                         ))

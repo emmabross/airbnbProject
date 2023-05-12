@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import * as sessionActions from '../../store/session';
@@ -25,7 +26,7 @@ const SpotForm = ({ spot, formType, formTitle }) => {
         e.preventDefault();
         setErrors({});
         spot = { ...spot, country, address, city, state, description, name, price, previewImage, image };
-        console.log('ERRORSSS', setErrors);
+        console.log('spot form spot', spot)
         if (formType === "Update Spot") {
             const updatedSpot = await dispatch(updateSpotThunk(spot));
             spot = updatedSpot;

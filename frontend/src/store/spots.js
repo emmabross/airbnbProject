@@ -1,3 +1,5 @@
+import { csrfFetch } from "./csrf";
+
 export const FETCH_SPOTS = "spots/FETCH_SPOTS";
 export const FETCH_SPOT = "spots/FETCH_SPOT";
 export const CREATE_SPOT = "spots/CREATE_SPOT";
@@ -32,7 +34,7 @@ export const removeSpot = (spotId) => ({
 
 /** Thunk Action Creators: */
 export const fetchSpotsThunk = () => async (dispatch) => {
-    const res = await fetch("/api/spots");
+    const res = await csrfFetch("/api/spots");
 
     if (res.ok) {
         const spots = await res.json();
@@ -42,7 +44,7 @@ export const fetchSpotsThunk = () => async (dispatch) => {
 };
 
 export const fetchSpotThunk = (spotId) => async (dispatch) => {
-    const res = await fetch(`/api/spots/${spotId}`);
+    const res = await csrfFetch(`/api/spots/${spotId}`);
 
     if (res.ok) {
         const spot = await res.json();
@@ -55,7 +57,7 @@ export const fetchSpotThunk = (spotId) => async (dispatch) => {
 };
 
 export const createSpotThunk = (spot) => async (dispatch) => {
-    const res = await fetch("/api/spots", {
+    const res = await csrfFetch("/api/spots", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(spot),
@@ -72,7 +74,7 @@ export const createSpotThunk = (spot) => async (dispatch) => {
 };
 
 export const updateSpotThunk = (spot) => async (dispatch) => {
-    const res = await fetch(`/api/spots/${spot.id}`, {
+    const res = await csrfFetch(`/api/spots/${spot.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(spot),
@@ -89,7 +91,7 @@ export const updateSpotThunk = (spot) => async (dispatch) => {
 };
 
 export const removeSpotThunk = (spotId) => async (dispatch) => {
-    const res = await fetch(`/api/spots/${spotId}`, {
+    const res = await csrfFetch(`/api/spots/${spotId}`, {
         method: "DELETE",
     });
 
@@ -121,10 +123,11 @@ function spotsReducer(state = initialState, action) {
         case FETCH_SPOT: {
             const newState = { ...state, allSpots: {}, singleSpot: {} }
             newState.singleSpot[action.spot.id] = action.spot
+            console.log('NEW STATE', newState);
             return newState
         }
         case CREATE_SPOT: {
-            const newState = { ...state }
+            const newState = { ...state, allSpots: {}, singleSpot: {} }
             newState[action.spot.id] = action.spot
             return newState
         }

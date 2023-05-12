@@ -22,7 +22,10 @@
     visibility: hidden;
 }
 
-.spot-button {
-    background: none;
-    border: none;
+.spot-location {
+    text-decoration: none;
+}
+
+.landing-page-container {
+    margin: 10px;
 }
