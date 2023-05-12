@@ -17,22 +17,22 @@ const GetAllSpots = () => {
 
     console.log("spots", spots);
     return (
-        <div className="landing-page-container">
-            <div className="spots-container">
-                <ul>
+            <span className="spots-container">
+                <div className="spot-container">
                     {
                         spots.map(spot => (
                             <>
                                 <div className="spot-card">
                                     <Link to={`/spots/${spot.id}`}>
-                                    <div className="tooltip">
+                                    <span className="tooltip">
                                         <span className="tooltiptext">{spot.name}</span>
-                                    </div>
+                                    </span>
                                     <img className="spot-img" src={spot.previewImage} alt={"Image"} title={spot.name} />
                                     <div className="spot-info-container">
-                                        <p className="spot-location">{spot.city}, {spot.state}</p>
-                                        <p className="spot-price">${spot.price} night</p>
+                                        <span className="spot-location">{spot.city}, {spot.state}</span>
+                                        <span className="spot-price">${spot.price} night</span>
                                         <div className="spot-rating">
+                                            <i className="fa-solid fa-star" />
                                             {spot?.avgRating >= 5 ? `${spot.avgRating}.0` : 'New'}
                                         </div>
                                     </div>
@@ -41,9 +41,8 @@ const GetAllSpots = () => {
                             </>
                         ))
                     }
-                </ul>
-            </div>
-        </div>
+                </div>
+            </span>
     )
 }
 

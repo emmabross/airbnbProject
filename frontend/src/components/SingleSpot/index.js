@@ -3,6 +3,7 @@ import { NavLink, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+
 import { fetchSpotThunk } from "../../store/spots";
 import "./SingleSpot.css"
 
@@ -15,10 +16,12 @@ const SingleSpot = () => {
         // state.spots.singleSpot ? state.spots.singleSpot[spotId] : null
         state.spots.singleSpot[spotId]
     );
+
+
+
     const dispatch = useDispatch();
     console.log('spotttt', spot)
 
-    const images = [];
 
     const showAlert = () => {
         alert("Feature coming soon");
@@ -47,28 +50,33 @@ const SingleSpot = () => {
                     </div>
                 </div>
                 <div className="spot-images-container">
-                    <span className="spot-images">
-                        <ul>
-                            {
+                        <span className="preview-img-container">
+                            <img className="preview" src={spot?.SpotImages[0].url} alt="Preview Image"/>
+                        </span>
+                        <span className="single-spot-images-container">
+                            {/* {
                                 spot?.SpotImages.map(image => (
                                     <>
-                                        <img className="spot-img" src={image.url} alt="image" />
+                                        <img className="single-spot-img" src={image.url} alt="image" />
                                     </>
                                 ))
-                            }
-                        </ul>
-                    </span>
+                            } */}
+                            <img className="single-spot-images" id="img1" src={spot?.SpotImages[1].url} alt="image" />
+                            <img className="single-spot-images" id="img2" src={spot?.SpotImages[2].url} alt="image" />
+                            <img className="single-spot-images" id="img3" src={spot?.SpotImages[3].url} alt="image" />
+                            <img className="single-spot-images" id="img4" src={spot?.SpotImages[4].url} alt="image" />
+                        </span>
                 </div>
                 <div className="spot-details-container">
                     <h2>Hosted by {spot?.Owner.firstName} {spot?.Owner.lastName}</h2>
                     <p className="spot-description">{spot?.description}</p>
                 </div>
                 <div className="spot-reserve-container">
-                    <p className="spot-price">{spot?.price} night</p>
-                    <div className="spot-rating">
-                        <span className="star-icon">&#9733;</span>
+                    <span className="spot-price">${spot?.price} night</span>
+                    <span className="spot-rating">
+                        <i className="fa-solid fa-star" />
                         {spot?.avgStarRating >= 5 ? `${spot.avgStarRating}.0` : 'New'}
-                    </div>
+                    </span>
                     <span className="spot-reviews">
                         {spot?.numReviews === 1 ? `${spot.numReviews} review` : `${spot.numReviews} reviews`}
                     </span>
