@@ -5,6 +5,11 @@
     grid-template-columns: 32rem 15rem 15rem;
     max-width: fit-content;
     padding: 10px;
+    justify-self: stretch;
+    justify-content: space-evenly;
+    grid-template-areas: 
+    "A A B C
+     A A C D";
 }
 
 .spot-images > ul {
@@ -16,21 +21,11 @@
     max-width: fit-content;
 }
 
-.spot-images {
-    display: grid;
-    grid-auto-flow: column;
-    box-sizing: content-box;
-    /* grid-template-columns: 2fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr; */
-    /* grid-template-areas: 
-        "preview preview img1 img2
-         preview preview img3 img4" */
-};
 
-.spot-img {
+.single-spot-img {
     grid-auto-flow: row;
     justify-self: stretch;
-    
+    display: grid;
 }
 
 .spot-page-container {
@@ -50,6 +45,6 @@
 }
 
 .spot-images-container > span {
-    display: grid;
+    display: inline-grid;
     grid-auto-flow: row;
 }

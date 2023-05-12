@@ -53,7 +53,7 @@ const SingleSpot = () => {
                             {
                                 spot?.SpotImages.map(image => (
                                     <>
-                                        <img className="spot-img" src={image.url} alt="image" />
+                                        <img className="single-spot-img" src={image.url} alt="image" />
                                     </>
                                 ))
                             }
@@ -65,11 +65,11 @@ const SingleSpot = () => {
                     <p className="spot-description">{spot?.description}</p>
                 </div>
                 <div className="spot-reserve-container">
-                    <p className="spot-price">{spot?.price} night</p>
-                    <div className="spot-rating">
+                    <span className="spot-price">${spot?.price} night</span>
+                    <span className="spot-rating">
                         <i className="fa-solid fa-star" />
                         {spot?.avgStarRating >= 5 ? `${spot.avgStarRating}.0` : 'New'}
-                    </div>
+                    </span>
                     <span className="spot-reviews">
                         {spot?.numReviews === 1 ? `${spot.numReviews} review` : `${spot.numReviews} reviews`}
                     </span>
