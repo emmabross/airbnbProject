@@ -4,11 +4,9 @@ const bcrypt = require('bcryptjs');
 
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { User } = require('../../db/models');
-
+const router = express.Router();
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
-
-const router = express.Router();
 
 //middleware
 const validateSignup = [
@@ -48,10 +46,7 @@ router.post(
         const { email, firstName, lastName, password, username } = req.body;
         const hashedPassword = bcrypt.hashSync(password);
         const user = await User.create({ email, firstName, lastName, username, hashedPassword });
-        if (!password.length) return res.status(400).json({ "message": "Bad Request", "errors": {
-                "password": "Password is required"
-            }
-        })
+        
         const safeUser = {
             id: user.id,
             firstName: user.firstName,

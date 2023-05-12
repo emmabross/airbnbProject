@@ -1,6 +1,6 @@
 'use strict';
-const {
-  Model, Validator } = require('sequelize');
+const { Model, Validator } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -33,8 +33,8 @@ module.exports = (sequelize, DataTypes) => {
       unique: true,
       validate: {
         len: [4, 30],
-        isNotEmail(val) {
-          if (Validator.isEmail(val)) {
+        isNotEmail(value) {
+          if (Validator.isEmail(value)) {
             throw new Error("Username cannot be an email address.");
           }
         }
