@@ -16,10 +16,12 @@ const SingleSpot = () => {
         // state.spots.singleSpot ? state.spots.singleSpot[spotId] : null
         state.spots.singleSpot[spotId]
     );
+
+
+
     const dispatch = useDispatch();
     console.log('spotttt', spot)
 
-    const images = [];
 
     const showAlert = () => {
         alert("Feature coming soon");
@@ -48,17 +50,22 @@ const SingleSpot = () => {
                     </div>
                 </div>
                 <div className="spot-images-container">
-                    <span className="spot-images">
-                        <ul>
-                            {
+                        <span className="preview-img-container">
+                            <img className="preview" src={spot?.SpotImages[0].url} alt="Preview Image"/>
+                        </span>
+                        <span className="single-spot-images-container">
+                            {/* {
                                 spot?.SpotImages.map(image => (
                                     <>
                                         <img className="single-spot-img" src={image.url} alt="image" />
                                     </>
                                 ))
-                            }
-                        </ul>
-                    </span>
+                            } */}
+                            <img className="single-spot-images" id="img1" src={spot?.SpotImages[1].url} alt="image" />
+                            <img className="single-spot-images" id="img2" src={spot?.SpotImages[2].url} alt="image" />
+                            <img className="single-spot-images" id="img3" src={spot?.SpotImages[3].url} alt="image" />
+                            <img className="single-spot-images" id="img4" src={spot?.SpotImages[4].url} alt="image" />
+                        </span>
                 </div>
                 <div className="spot-details-container">
                     <h2>Hosted by {spot?.Owner.firstName} {spot?.Owner.lastName}</h2>
