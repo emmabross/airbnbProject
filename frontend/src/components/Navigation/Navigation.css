@@ -6,6 +6,24 @@ li {
     display: inline-flex;
     justify-content: space-between;
     padding: 10px;
+    margin: 10px;
 }
 
+.nav-header-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+.nav-header-right {
+    width: fit-content;
+    justify-content: space-between;
+    position: relative;
+    display: inline-block;
+    padding-inline-end: 40px;
+}
+
+.nav-header-right > a {
+    padding: 10px;
+}
 

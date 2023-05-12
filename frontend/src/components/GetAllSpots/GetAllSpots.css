@@ -1,0 +1,31 @@
+.spots-container {
+    display: inline-grid;
+    box-sizing: border-box;
+    /* grid-template-columns: repeat(4, 100px);
+    grid-template-rows: repeat(3, 50px);
+     */
+    justify-items: center;
+    align-items: center;
+}
+
+.spot-card {
+    display: inline-grid;
+    border: 3px solid red;
+}
+
+.spot-img {
+    display: grid;
+    max-width: 15em;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+}
+
+.spot-location {
+    text-decoration: none;
+}
+
+.landing-page-container {
+    margin: 10px;
+}
