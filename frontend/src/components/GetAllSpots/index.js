@@ -17,9 +17,8 @@ const GetAllSpots = () => {
 
     console.log("spots", spots);
     return (
-        <div className="landing-page-container">
-            <div className="spots-container">
-                <ul>
+            <span className="spots-container">
+                <div className="spot-container">
                     {
                         spots.map(spot => (
                             <>
@@ -42,9 +41,8 @@ const GetAllSpots = () => {
                             </>
                         ))
                     }
-                </ul>
-            </div>
-        </div>
+                </div>
+            </span>
     )
 }
 
