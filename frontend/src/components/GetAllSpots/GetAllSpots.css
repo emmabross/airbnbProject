@@ -11,11 +11,16 @@
 .spot-card {
     display: inline-grid;
     border: 3px solid red;
+    max-height: 20em;
+    margin: 10px;
+    width: 15em;
 }
 
 .spot-img {
     display: grid;
-    max-width: 15em;
+    width: 15em;
+    height: 15em;
+    display: grid;
 }
 
 .tooltip .tooltiptext {
@@ -28,4 +33,16 @@
 
 .landing-page-container {
     margin: 10px;
+}
+
+.tooltip {
+    display: grid;
+    height: 0;
+}
+
+.spot-info-container {
+    display: inline-grid;
+    height: fit-content;
+    color: black;
+    padding: 10px;
 }

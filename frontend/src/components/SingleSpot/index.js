@@ -3,6 +3,7 @@ import { NavLink, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+
 import { fetchSpotThunk } from "../../store/spots";
 import "./SingleSpot.css"
 
@@ -66,7 +67,7 @@ const SingleSpot = () => {
                 <div className="spot-reserve-container">
                     <p className="spot-price">{spot?.price} night</p>
                     <div className="spot-rating">
-                        <span className="star-icon">&#9733;</span>
+                        <i className="fa-solid fa-star" />
                         {spot?.avgStarRating >= 5 ? `${spot.avgStarRating}.0` : 'New'}
                     </div>
                     <span className="spot-reviews">
