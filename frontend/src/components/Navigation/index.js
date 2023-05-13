@@ -10,12 +10,12 @@ function Navigation({ isLoaded }) {
     return (
         <ul className='nav-header-container'>
             <li>
-                <NavLink exact to="/">BrossBnB</NavLink>
+                <NavLink classname="home-button" exact to="/">BrossBnB</NavLink>
             </li>
             {isLoaded && (
              
                 <li className='nav-header-right'>
-                    {sessionUser && <NavLink exact to="/spots/new">Create a new spot</NavLink>}
+                    {sessionUser && <NavLink exact to="/spots/new">Create a New Spot</NavLink>}
                     <ProfileButton user={sessionUser} />
                 </li>
 

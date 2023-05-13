@@ -9,6 +9,7 @@ li {
     margin: 10px;
 }
 
+
 .nav-header-container {
     display: flex;
     justify-content: space-between;
@@ -25,5 +26,32 @@ li {
 
 .nav-header-right > a {
     padding: 10px;
+    font-size: 18px;
+    text-transform: none;
+    color: black;
+    -webkit-text-fill-color: black;
+    text-decoration: none;
 }
 
+
+.home-button {
+    background-image: linear-gradient(-225deg,
+            #4927c5 0%,
+            #247f5e 29%,
+            #dada40 67%,
+            #ff6600 100%);
+    background-size: 200% auto;
+    color: #fff;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textclip 3s ease-in 1s  reverse both running;
+    /* 2s linear 1; */
+    display: inline-block;
+    font-size: 45px;
+}
+
+@keyframes textclip {
+    to {
+        background-position: 200% center;
+    }
+}

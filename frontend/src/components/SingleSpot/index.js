@@ -57,8 +57,10 @@ const SingleSpot = () => {
                             {/* {
                                 spot?.SpotImages.map(image => (
                                     <>
-                                        <img className="single-spot-img" src={image.url} alt="image" />
+                                        <img className="single-spot-img" key={image.id}src={image.url} alt="image" />
                                     </>
+                                    
+                                    
                                 ))
                             } */}
                             <img className="single-spot-images" id="img1" src={spot?.SpotImages[1].url} alt="image" />

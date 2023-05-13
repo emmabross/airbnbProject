@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
+import { Link } from "react-router-dom";
 import "./LoginForm.css";
 
 function LoginFormModal() {
@@ -40,6 +41,7 @@ function LoginFormModal() {
                     Username or Email
                     <input
                         type="text"
+                        placeholder="Username or Email"
                         value={credential}
                         onChange={(e) => setCredential(e.target.value)}
                         required
@@ -59,7 +61,7 @@ function LoginFormModal() {
                 )}
                 <button type="submit">Log In</button>
             </form>
-            <div onClick={demoUser}>Demo User</div>
+            <Link onClick={demoUser}>Demo User</Link>
         </>
     );
 }
