@@ -42,7 +42,8 @@ function ProfileButton({ user }) {
 
     return (
         <>
-            <button onClick={openMenu}>
+            <button className="menu-button" onClick={openMenu}>
+                <i class="fa-sharp fa-solid fa-bars"></i>
                 <i className="fas fa-user-circle" />
             </button>
             <ul className={ulClassName} ref={ulRef}>
@@ -51,7 +52,7 @@ function ProfileButton({ user }) {
                         <li>Hello, {user.firstName}</li>
                         <li>{user.email}</li>
                         <li>
-                            {/* <NavLink href={`/spots/current`}>Manage Spots</NavLink> */}
+                            <p>Manage Spots</p>
                         </li>
                         <li>
                             <button onClick={logout}>Log Out</button>
