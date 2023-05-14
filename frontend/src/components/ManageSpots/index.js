@@ -21,7 +21,7 @@ const ManageSpots = () => {
     return (
         <div className="manage-spots-body">
             <div className="manage-spots-header">
-                <h1>Manage Your Spots</h1>
+                <h1>Manage Spots</h1>
                 <button type="submit">
                     <NavLink exact to="/spots/new">Create a New Spot</NavLink>
                 </button>
@@ -33,7 +33,7 @@ const ManageSpots = () => {
                         <>
                         {spot.ownerId === user.id ? (
                             <div className="spot-card">
-                                <Link to={`/spots/current`}>
+                                    <Link to={`/spots/${spot.id}`}>
                                     <span className="tooltip">
                                         <span className="tooltiptext">{spot.name}</span>
                                     </span>
@@ -48,12 +48,24 @@ const ManageSpots = () => {
                                     </div>
                                 </Link>
                                 <div className="spot-buttons-container">
-                                    <button type="submit">
-                                        <NavLink exact to="/spots/:spotId/edit">Update Spot</NavLink>
-                                    </button>
+                                        <NavLink exact to="/spots/:spotId/edit">
+                                            <button className="update-spot-button" type="submit">Update</button>
+                                        </NavLink>
+                                        {/* <NavLink exact to="/spots/:spotId/edit"> */}
+                                            <button className="update-spot-button" type="submit">Delete</button>
+                                        {/* </NavLink> */}
                                 </div>
                             </div>
-                           ) : (null)
+                           ) : (null
+                            // <>
+                            //      <div className="manage-spots-header">
+                            //         <h1>Manage Spots</h1>
+                            //             <button type="submit">
+                            //                 <NavLink exact to="/spots/new">Create a New Spot</NavLink>
+                            //             </button>
+                            //     </div>
+                            // </>
+                           )
                         }
                         </>
                     ))
