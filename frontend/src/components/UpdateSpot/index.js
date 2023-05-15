@@ -9,6 +9,8 @@ const UpdateSpot = () => {
         description: "",
         name: "",
         price: "",
+        lat: 1,
+        lng: 1,
         previewImage: "",
         image: ""
     };

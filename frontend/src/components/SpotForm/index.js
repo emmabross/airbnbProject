@@ -179,7 +179,7 @@ const SpotForm = ({ spot, formType, formTitle }) => {
                 </label>
                 <p className="errors">{errors.image}{errors.previewImage}</p>
             </div>
-            <button type="submit" onSubmit={handleSubmit}>{formType}</button>
+            <button type="submit" onSubmit={handleSubmit}>Create Spot</button>
         </form>
     );
 };

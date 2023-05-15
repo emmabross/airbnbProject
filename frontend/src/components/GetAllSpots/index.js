@@ -11,6 +11,7 @@ const GetAllSpots = () => {
 
     const spotsObj = useSelector(state => state.spots.allSpots)
     const spots = Object.values(spotsObj); //populates store
+
     useEffect(() => {
         dispatch(fetchSpotsThunk())
     }, [dispatch])

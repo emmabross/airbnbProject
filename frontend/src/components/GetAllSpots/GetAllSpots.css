@@ -19,20 +19,18 @@
 
 .spot-card {
     display: inline-grid;
-    border: 1px solid black;
-    border-radius: 16px;
     max-height: 20em;
-    margin: 10px;
+    margin: 15px;
     width: 13em;
+    padding: 10px;
 }
 
 .spot-img {
     display: grid;
-    width: 13em;
-    height: 13em;
+    width: 15em;
+    height: 15em;
     display: grid;
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
+    border-radius: 6px;
 }
 
 .tooltip .tooltiptext {
@@ -61,4 +59,8 @@
 
 .spot-container {
     width: fit-content;
+    grid-auto-flow: column;
+    grid-gap: 20px;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    justify-items: stretch;
 }

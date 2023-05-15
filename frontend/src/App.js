@@ -7,6 +7,7 @@ import GetAllSpots from "./components/GetAllSpots";
 import SingleSpot from "./components/SingleSpot";
 import CreateSpot from "./components/CreateSpot";
 import UpdateSpot from "./components/UpdateSpot";
+import ManageSpots from "./components/ManageSpots";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ function App() {
       {isLoaded && 
       <Switch>
           <Route exact path="/spots/:spotId/edit" component={UpdateSpot} />
+          <Route exact path="/spots/current" component={ManageSpots}/>
           <Route exact path="/spots/new" component={CreateSpot} />
           <Route exact path="/spots/:spotId" component={SingleSpot} />
           <Route exact path="/" component={GetAllSpots} />
